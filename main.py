@@ -9,7 +9,17 @@ phonetic_dict = {row.letter: row.code for (index, row) in data.iterrows()}
 print(phonetic_dict)
 
 # TODO 2. Create a list of the phonetic code words from a word that the user inputs.
+program_on = True
 
-word = input("Enter a word: ").upper()
-output_list = [phonetic_dict[letter] for letter in word]
-print(output_list)
+while program_on:
+    word = input("Enter a word: ").upper()
+    if word == "END":
+        program_on = False
+    else:
+        try:
+            output_list = [phonetic_dict[letter] for letter in word]
+            program_on = False
+        except KeyError:
+            print("You have entered invalid letters")
+        else:
+            print(output_list)
