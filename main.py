@@ -8,18 +8,19 @@ data = pandas.read_csv("nato_phonetic_alphabet.csv")
 phonetic_dict = {row.letter: row.code for (index, row) in data.iterrows()}
 print(phonetic_dict)
 
-# TODO 2. Create a list of the phonetic code words from a word that the user inputs.
-program_on = True
 
-while program_on:
+# TODO 2. Create a list of the phonetic code words from a word that the user inputs.
+
+
+def run_program_on():
     word = input("Enter a word: ").upper()
-    if word == "END":
-        program_on = False
+    try:
+        output_list = [phonetic_dict[letter] for letter in word]
+    except KeyError:
+        print("You have entered invalid letters")
+        run_program_on()
     else:
-        try:
-            output_list = [phonetic_dict[letter] for letter in word]
-            program_on = False
-        except KeyError:
-            print("You have entered invalid letters")
-        else:
-            print(output_list)
+        print(output_list)
+
+
+run_program_on()
